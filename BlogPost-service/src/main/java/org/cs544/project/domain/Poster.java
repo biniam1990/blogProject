@@ -4,9 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+<<<<<<< HEAD
 import javax.persistence.OneToMany;   
 
 @Entity
+=======
+ 
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;   
+
+@Entity
+ 
+>>>>>>> f9a3132ae00df97f6e9d52d0995a69deaf3a0131
 public class Poster extends Commenter {
 	
 	@OneToMany(mappedBy="poster")
