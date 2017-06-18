@@ -5,11 +5,12 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Commenter extends Role{
 
-	@ManyToOne(mappedBy="commenter")
+	@OneToMany(mappedBy="commenter")
 	private List<Comment> comments= new ArrayList<>();
 	
 	public Commenter() {}
