@@ -14,8 +14,9 @@ public class BlogPost {
 	
 	private List<Comment> comments= new ArrayList<>();
 	
-	
-	
+	private Poster poster;
+
+	public BlogPost() {	}
 
 	public BlogPost(String title, String content, LocalDate created, LocalDate updated) {
 		this.title = title;
@@ -23,8 +24,6 @@ public class BlogPost {
 		this.created = created;
 		this.updated = updated;
 	}
-
-	public BlogPost() {	}
 
 	public int getId() {
 		return id;
@@ -72,6 +71,14 @@ public class BlogPost {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public Poster getPoster() {
+		return poster;
+	}
+
+	public void setPoster(Poster poster) {
+		this.poster = poster;
 	}
 	
 	
