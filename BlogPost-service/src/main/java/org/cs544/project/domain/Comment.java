@@ -4,13 +4,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Comment {
 	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String content;
 	private LocalDate created;
 	private LocalDate updated;
-	
+	@ManyToOne
 	private Commenter commenter;
 	
 

@@ -3,8 +3,13 @@ package org.cs544.project.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Commenter extends Role{
 
+	@ManyToOne(mappedBy="commenter")
 	private List<Comment> comments= new ArrayList<>();
 	
 	public Commenter() {}
