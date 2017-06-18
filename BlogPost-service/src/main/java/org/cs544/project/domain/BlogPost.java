@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class BlogPost {
 	@Id
@@ -18,11 +22,13 @@ public class BlogPost {
 	private int id;
 	private String title;
 	private String content;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate created;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate updated;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments= new ArrayList<>();
-	@OneToMany(mappedBy="posts")
+	@ManyToOne
 	private Poster poster;
 
 	public BlogPost() {	}
@@ -80,6 +86,14 @@ public class BlogPost {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+	
+	public boolean addComment(Comment comment){
+		return comments.add(comment);
+	}
+	
+	public boolean removeComment(Comment comment){
+		return comments.remove(comment);
 	}
 
 	public Poster getPoster() {

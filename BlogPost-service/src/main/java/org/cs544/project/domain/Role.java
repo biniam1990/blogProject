@@ -3,6 +3,7 @@ package org.cs544.project.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Role {
@@ -10,7 +11,8 @@ public class Role {
 	@Id
 	@GeneratedValue
 	private int id;
- User user;
+	@OneToOne
+    User user;
 
 	public User getUser() {
 		return user;

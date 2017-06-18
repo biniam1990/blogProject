@@ -18,10 +18,7 @@ public class Comment {
 	@GeneratedValue
 	private int id;
 	private String content;
-	@Temporal(TemporalType.DATE )
 	private LocalDate created;
-	
-	@Temporal(TemporalType.DATE )
 	private LocalDate updated;
 	
 	@ManyToOne

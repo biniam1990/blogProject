@@ -3,6 +3,7 @@ package org.cs544.project.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -13,6 +14,7 @@ public class User {
 	private String name;
 	private String username;
 	private String password;
+	@OneToOne
 	private Role role;
 	
 	public String getName() {

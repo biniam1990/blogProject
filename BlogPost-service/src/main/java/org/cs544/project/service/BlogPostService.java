@@ -24,6 +24,11 @@ public class BlogPostService {
 		return postRepository.findBlogPostById(id);
 	}
 	
+	//adds the post
+	public BlogPost addPost(BlogPost post){
+		postRepository.save(post);
+		return post;
+	}
 	//updates post
 	
 	public BlogPost updatePost(BlogPost post, int id){
@@ -33,8 +38,8 @@ public class BlogPostService {
 	
 	//deletes post
 	
-	public void deletePost(BlogPost post){
-		postRepository.delete(post);
+	public void deletePost(int id){
+		postRepository.delete(id);
 	}
 	
 }
