@@ -1,7 +1,7 @@
 package org.cs544.project.domain;
 
 public class Role {
-	
+	int id;
 	private User user;
 
 	public User getUser() {

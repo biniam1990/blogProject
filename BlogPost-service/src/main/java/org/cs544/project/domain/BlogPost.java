@@ -22,7 +22,7 @@ public class BlogPost {
 	private LocalDate updated;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments= new ArrayList<>();
-	@ManyToOne()
+	@OneToMany(mappedBy="posts")
 	private Poster poster;
 
 	public BlogPost() {	}
@@ -89,7 +89,4 @@ public class BlogPost {
 	public void setPoster(Poster poster) {
 		this.poster = poster;
 	}
-	
-	
-
 }

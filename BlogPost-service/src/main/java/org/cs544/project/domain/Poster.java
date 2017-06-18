@@ -3,10 +3,14 @@ package org.cs544.project.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;   
+
+@Entity
 public class Poster extends Commenter {
 	
-	private BlogPost post;
-	
+	@OneToMany(mappedBy="poster")
 	List<BlogPost> posts= new ArrayList<>();
 	
 	public boolean addPost(BlogPost post){
@@ -17,15 +21,6 @@ public class Poster extends Commenter {
 	public boolean removePost(BlogPost post){
 		post.setPoster(null);
 		return posts.remove(post);
-	}
-	
-
-	public BlogPost getPost() {
-		return post;
-	}
-
-	public void setPost(BlogPost post) {
-		this.post = post;
 	}
 
 	public List<BlogPost> getPosts() {
