@@ -1,6 +1,7 @@
 package org.cs544.project.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BlogPost {
@@ -11,9 +12,17 @@ public class BlogPost {
 	private LocalDate created;
 	private LocalDate updated;
 	
-	private List<Comment> comments;
+	private List<Comment> comments= new ArrayList<>();
 	
 	
+	
+
+	public BlogPost(String title, String content, LocalDate created, LocalDate updated) {
+		this.title = title;
+		this.content = content;
+		this.created = created;
+		this.updated = updated;
+	}
 
 	public BlogPost() {	}
 
