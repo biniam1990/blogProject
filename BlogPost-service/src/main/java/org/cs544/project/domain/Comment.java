@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Comment {
@@ -16,12 +18,15 @@ public class Comment {
 	@GeneratedValue
 	private int id;
 	private String content;
+	@Temporal(TemporalType.DATE )
 	private LocalDate created;
+	
+	@Temporal(TemporalType.DATE )
 	private LocalDate updated;
+	
 	@ManyToOne
 	private Commenter commenter;
 	
-
 	public Comment() {}
 
 	public Commenter getCommenter() {

@@ -3,6 +3,8 @@ package org.cs544.project.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+@Entity 
 public class Poster extends Commenter {
 	
 	private BlogPost post;
