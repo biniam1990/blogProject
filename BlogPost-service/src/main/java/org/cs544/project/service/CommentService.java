@@ -13,39 +13,40 @@ public class CommentService {
 
 	@Resource
 	private CommentRepository commentRepository;
-	
+
 	@Resource
 	private BlogPostRepository blogPostRepository;
-	
-	//gets all commments 
-	public List<Comment> getComments(){
+
+	// gets all commments
+	public List<Comment> getComments() {
 		return commentRepository.findAll();
 	}
-	
-	//get comment by id 
-	public List<Comment> getComment(int id){
+
+	// get comment by id
+	public List<Comment> getComment(int id) {
 		return commentRepository.findComment(id);
 	}
-	
- //update Comment 
-	
-	public Comment  updateComment(Comment comment, int id){
+
+	// update Comment
+
+	public Comment updateComment(Comment comment, int id) {
 		commentRepository.save(comment);
 		return comment;
 	}
-	
-	//deletes post
-	
-	public void deleteComment(Comment comment){
+
+	// deletes post
+
+	public void deleteComment(Comment comment) {
 		commentRepository.delete(comment);
 	}
-	
-	public Comment addComment(Comment comment, int postId){
-		BlogPost tempPost= blogPostRepository.findBlogPostById(postId);
-	return tempPost.se
-		
-		
+
+	public Comment addComment(Comment comment, int postId) {
+		BlogPost tempPost = blogPostRepository.findBlogPostById(postId);
+		tempPost.addComment(comment);
+
+		blogPostRepository.save(tempPost);
+		return comment;
+
 	}
-	
-	
+
 }
