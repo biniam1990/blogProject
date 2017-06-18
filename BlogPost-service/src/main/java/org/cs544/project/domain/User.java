@@ -1,25 +1,15 @@
 package org.cs544.project.domain;
 
-<<<<<<< HEAD
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class User {
-	
-	@Id
-	@GeneratedValue
-	int id;
-=======
-import javax.persistence.*;
- 
-@Entity
-public class User {
 	@Id 
 	@GeneratedValue
 	private int id;
->>>>>>> 5e163baff5929387303470ea68686ddbcc952d43
 	private String name;
 	private String username;
 	private String password;

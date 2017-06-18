@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-<<<<<<< HEAD
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;   
 
 @Entity
-=======
-@Entity 
->>>>>>> 5e163baff5929387303470ea68686ddbcc952d43
 public class Poster extends Commenter {
 	
 	@OneToMany(mappedBy="poster")
