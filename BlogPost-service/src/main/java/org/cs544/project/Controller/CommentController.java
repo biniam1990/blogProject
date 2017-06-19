@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/posts")
+ 
 public class CommentController {
 
 	@Resource
 	private CommentService commentService;
 
-	@RequestMapping(value = "/{postId}/comments", method = RequestMethod.GET)
+	@RequestMapping(value = "/posts/{postId}/comments", method = RequestMethod.GET)
 
 	public List<Comment> getComments(@PathVariable int postId) {
 
@@ -27,7 +27,7 @@ public class CommentController {
 
 	}
 
-	@RequestMapping(value = "/{postId}/comments/{commentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/posts/{postId}/comments/{commentId}", method = RequestMethod.GET)
 
 	public Comment getOneComment(@PathVariable int postId, @PathVariable int commentId) {
 
@@ -35,13 +35,13 @@ public class CommentController {
 
 	}
 
-	@RequestMapping(value = "/{postId}/comments", method = RequestMethod.POST)
-	public Comment addComment(@RequestBody Comment comment, @PathVariable int postId) {
+	@RequestMapping(value = "{userId}/posts/{postId}/comments", method = RequestMethod.POST)
+	public Comment addComment(@RequestBody Comment comment, @PathVariable int userId, @PathVariable int postId) {
 
 		return commentService.addComment(comment, postId);
 	}
 
-	@RequestMapping(value = "/{postId}/comments/{commentId}/", method = RequestMethod.DELETE)
+	@RequestMapping(value = "{userId}/posts/{postId}/comments/{commentId}/", method = RequestMethod.DELETE)
 	public void deleteComment(@PathVariable int postId, @PathVariable int commentId) {
 		Comment comment = getComments(postId).get(commentId);
 		commentService.deleteComment(comment);
