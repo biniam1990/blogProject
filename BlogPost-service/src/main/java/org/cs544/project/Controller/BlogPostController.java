@@ -26,9 +26,9 @@ public class BlogPostController {
 //				new BlogPost("Book2", "loan", LocalDate.now(), LocalDate.now()));		
 	return postService.getPosts();
 	}
-	@RequestMapping(value="/posts", method=RequestMethod.POST)
-	public BlogPost addPost(@RequestBody BlogPost post){
-		return postService.addPost(post);
+	@RequestMapping(value="{userId}/posts", method=RequestMethod.POST)
+	public BlogPost addPost(@RequestBody BlogPost post, @PathVariable int userId){
+		return postService.addPost(post,userId);
 	}
 	
 	@RequestMapping(value="/posts/{postId}", method= RequestMethod.GET)
