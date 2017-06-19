@@ -10,13 +10,15 @@ import org.cs544.project.domain.BlogPost;
 import org.cs544.project.domain.Poster;
 import org.cs544.project.domain.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class BlogPostService {
 	
 	@Resource
 	private BlogPostRepository postRepository;
-	
 	@Resource
 	private UserRepository userRepository;
 	
@@ -41,7 +43,7 @@ public class BlogPostService {
 	}
 	
 	//updates post
-	public BlogPost updatePost(BlogPost post, int id, int userId){
+	public BlogPost updatePost(BlogPost post, int id){
 		postRepository.save(post);
 		return post;
 	}

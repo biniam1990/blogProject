@@ -26,6 +26,7 @@ public class BlogPostController {
 //				new BlogPost("Book2", "loan", LocalDate.now(), LocalDate.now()));		
 	return postService.getPosts();
 	}
+	
 	@RequestMapping(value="{userId}/posts", method=RequestMethod.POST)
 	public BlogPost addPost(@RequestBody BlogPost post, @PathVariable int userId){
 		return postService.addPost(post,userId);
@@ -37,13 +38,13 @@ public class BlogPostController {
 		return postService.getPost(postId);
 	}
 	
-	@RequestMapping(value ="/posts/{postId}", method=RequestMethod.PUT)
+	@RequestMapping(value ="{userId}/posts/{postId}", method=RequestMethod.PUT)
 	public BlogPost updatePost(@PathVariable int postId,BlogPost post){
 		postService.updatePost(post,postId);
 		return post;
 	}
 	
-	@RequestMapping(value="/posts/{postId}", method=RequestMethod.DELETE)
+	@RequestMapping(value="{userId}/posts/{postId}", method=RequestMethod.DELETE)
 	public void deletePost(int id){
 		postService.deletePost(id);
 	}
