@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.cs544.project.domain.Comment;
+import org.cs544.project.domain.Commenter;
+import org.cs544.project.domain.Role;
 import org.cs544.project.service.CommentService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,22 +38,23 @@ public class CommentController {
 	}
 
 	@RequestMapping(value = "{userId}/posts/{postId}/comments", method = RequestMethod.POST)
-	public Comment addComment(@RequestBody Comment comment, @PathVariable int userId, @PathVariable int postId) {
-
-		return commentService.addComment(comment, postId);
+	public Comment addComment(@RequestBody Comment comment,  @PathVariable int postId, @PathVariable int userId) {
+		
+		
+		return commentService.addComment(comment, postId, userId);
 	}
 
-	@RequestMapping(value = "{userId}/posts/{postId}/comments/{commentId}/", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/userId}/posts/{postId}/comments/{commentId}", method = RequestMethod.DELETE)
 	public void deleteComment(@PathVariable int postId, @PathVariable int commentId) {
-		Comment comment = getComments(postId).get(commentId);
-		commentService.deleteComment(comment);
+		
+		
+		commentService.deleteComment(commentId);
 	}
 	
 	
-//	@RequestMapping(value = "/{postId}/comments/{commentId}/", method = RequestMethod.PUT)
-//	public void updateComment(@PathVariable int postId, @PathVariable int commentId) {
-//		Comment comment = getComments(postId).get(commentId);
-//		commentService.deleteComment(comment);
-//	}
+ 	@RequestMapping(value = "/userId}/posts/{postId}/comments/{commentId}", method = RequestMethod.PUT)
+ 	public void updateComment(Comment comment, @PathVariable int postId, @PathVariable int commentId) {
+ 		  		commentService.updateComment(comment);
+ 	}
 	
 }
