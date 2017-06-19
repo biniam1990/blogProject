@@ -14,7 +14,7 @@ public class User {
 	private String name;
 	private String username;
 	private String password;
-	@OneToOne
+	@OneToOne(mappedBy="user")
 	private Role role;
 	
 	public String getName() {
