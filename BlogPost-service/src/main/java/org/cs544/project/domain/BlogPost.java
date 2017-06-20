@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -27,17 +28,18 @@ public class BlogPost {
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate updated;
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="post_id")
 	private List<Comment> comments= new ArrayList<>();
-	@ManyToOne
-	private Poster poster;
+    @ManyToOne
+	private User user;
 
 	public BlogPost() {	}
 
-	public BlogPost(String title, String content, LocalDate created, LocalDate updated) {
+	public BlogPost(String title, String content, LocalDate created,User user) {
 		this.title = title;
 		this.content = content;
 		this.created = created;
-		this.updated = updated;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -96,11 +98,12 @@ public class BlogPost {
 		return comments.remove(comment);
 	}
 
-	public Poster getPoster() {
-		return poster;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPoster(Poster poster) {
-		this.poster = poster;
+	public void setUser(User user) {
+		this.user = user;
 	}
+
 }

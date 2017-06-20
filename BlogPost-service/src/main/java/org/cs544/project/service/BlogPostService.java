@@ -1,5 +1,6 @@
 package org.cs544.project.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,7 +8,6 @@ import javax.annotation.Resource;
 import org.cs544.project.Repository.BlogPostRepository;
 import org.cs544.project.Repository.UserRepository;
 import org.cs544.project.domain.BlogPost;
-import org.cs544.project.domain.Poster;
 import org.cs544.project.domain.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -33,17 +33,20 @@ public class BlogPostService {
 	}
 	
 	//adds the post
-	public BlogPost addPost(BlogPost post, int userId){
-        User user= userRepository.findUserById(userId);
-        Poster poster = new Poster();
-        poster.setUser(user);
-        post.setPoster(poster);
+	public BlogPost addPost(String title,String content, int userId){
+        User user= (User)userRepository.findUserById(userId);
+        BlogPost post = new BlogPost(title, content, LocalDate.now(), user);
+        post.setUser(user);
 		postRepository.save(post);
 		return post;
 	}
 	
 	//updates post
-	public BlogPost updatePost(BlogPost post, int id){
+	public BlogPost updatePost(String title,String content, int postId){
+		BlogPost post = (BlogPost)postRepository.findBlogPostById(postId);
+		post.setContent(content);
+		post.setTitle(title);
+		post.setUpdated(LocalDate.now());
 		postRepository.save(post);
 		return post;
 	}

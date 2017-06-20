@@ -13,26 +13,32 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Comment {
-	
 	@Id
 	@GeneratedValue
 	private int id;
 	private String content;
 	private LocalDate created;
 	private LocalDate updated;
-	
 	@ManyToOne
-	private Commenter commenter;
+	private User user;
 	
 	public Comment() {}
-
-	public Commenter getCommenter() {
-		return commenter;
+	
+	public Comment(String content, LocalDate created, User user) {
+		this.content = content;
+		this.created = created;
+		this.user = user;
 	}
 
-	public void setCommenter(Commenter commenter) {
-		this.commenter = commenter;
+	public User getUser() {
+		return user;
 	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 	public int getId() {
 		return id;

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface  CommentRepository extends JpaRepository<Comment,Integer>{
-	@Query("select b from BloPost b join b.comments c where b.id = ?1 ")
-	public List<Comment> findComment(int id);
+	@Query("select b from BlogPost b join b.comments c where b.id = ?1 ")
+	public List<Comment> findCommentById(int id);
 
 }
