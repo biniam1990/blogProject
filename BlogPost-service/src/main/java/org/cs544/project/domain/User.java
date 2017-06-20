@@ -22,6 +22,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	List<Comment> comments= new ArrayList<>();
 	
+	public User(){}
 	public User(String name, String username, String password) {
 		this.name = name;
 		this.username = username;
