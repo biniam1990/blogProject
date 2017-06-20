@@ -4,35 +4,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-@Entity
+
 public class BlogPost {
-	@Id
-	@GeneratedValue
+
 	private int id;
 	private String title;
-	@Lob
 	private String content;
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate created;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate updated;
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="post_id")
 	private List<Comment> comments= new ArrayList<>();
-    @ManyToOne
 	private User user;
 
 	public BlogPost() {	}

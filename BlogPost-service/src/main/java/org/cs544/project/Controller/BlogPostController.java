@@ -28,8 +28,8 @@ public class BlogPostController {
 	return postService.getPosts();
 	}
 	@PostMapping(value="{userId}/posts")
-	public BlogPost addPost(String title,String content, @PathVariable int userId){
-		return postService.addPost(title,content,userId);
+	public BlogPost addPost(BlogPost post, @PathVariable int userId){
+		return postService.addPost(post,userId);
 	}
 	
 	@GetMapping(value="/posts/{postId}")
@@ -38,8 +38,8 @@ public class BlogPostController {
 	}
 
 	@PutMapping(value ="{userId}/posts/{postId}")
-	public BlogPost updatePost(@PathVariable int postId,String title,String content){
-		return postService.updatePost(title, content, postId);
+	public BlogPost updatePost(@PathVariable int postId,BlogPost post){
+		return postService.updatePost(post, postId);
 	}
 	
 	@DeleteMapping(value="{userId}/posts/{postId}")

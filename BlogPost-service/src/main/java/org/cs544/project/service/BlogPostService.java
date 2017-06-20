@@ -21,31 +21,31 @@ public class BlogPostService {
 	private BlogPostRepository postRepository;
 	@Resource
 	private UserRepository userRepository;
-	
+
 	//gets all posts
 	public List<BlogPost> getPosts(){
+		System.out.println("returning posts");
 		return postRepository.findAll();
 	}
 	
 	//gets one post by id
 	public BlogPost getPost(int id){
+		System.out.println("returning A single post");
 		return postRepository.findBlogPostById(id);
 	}
 	
 	//adds the post
-	public BlogPost addPost(String title,String content, int userId){
+	public BlogPost addPost(BlogPost post, int userId){
+		System.out.println("Saving a post");
         User user= (User)userRepository.findUserById(userId);
-        BlogPost post = new BlogPost(title, content, LocalDate.now(), user);
         post.setUser(user);
 		postRepository.save(post);
 		return post;
 	}
 	
 	//updates post
-	public BlogPost updatePost(String title,String content, int postId){
-		BlogPost post = (BlogPost)postRepository.findBlogPostById(postId);
-		post.setContent(content);
-		post.setTitle(title);
+	public BlogPost updatePost(BlogPost post, int postId){
+		System.out.println("updating A single post");
 		post.setUpdated(LocalDate.now());
 		postRepository.save(post);
 		return post;
@@ -53,6 +53,7 @@ public class BlogPostService {
 	
 	//deletes post
 	public void deletePost(int id){
+		System.out.println("deleting a post");
 		postRepository.delete(id);
 	}
 	

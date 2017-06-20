@@ -31,13 +31,13 @@ public class CommentController {
 
 	}
 	@PostMapping(value = "{userId}/posts/{postId}/comments")
-	public Comment addComment(String content, @PathVariable int postId, @PathVariable int userId) {
-		return	commentService.addComment(content, postId, userId);
+	public Comment addComment(Comment comment, @PathVariable int postId, @PathVariable int userId) {
+		return	commentService.addComment(comment, postId, userId);
 	}
 	
 	@PutMapping(value = "/userId}/posts/{postId}/comments/{commentId}")
- 	public Comment updateComment(String content,@PathVariable int commentId) {
- 		 return	commentService.updateComment(content, commentId);	
+ 	public Comment updateComment(Comment comment,@PathVariable int commentId) {
+ 		 return	commentService.updateComment(comment, commentId);	
  	}
 
 	@DeleteMapping(value = "/userId}/posts/{postId}/comments/{commentId}")

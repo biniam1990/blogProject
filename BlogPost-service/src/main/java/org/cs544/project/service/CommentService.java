@@ -36,10 +36,10 @@ public class CommentService {
 	}
 	
 	//add comment
-	public Comment addComment(String content, int postId, int userId) {
+	public Comment addComment(Comment comment, int postId, int userId) {
 		BlogPost tempPost = blogPostRepository.findBlogPostById(postId);
 		User user = userRepository.findUserById(userId);
-		Comment comment= new Comment(content, LocalDate.now(), user);
+		comment.setUser(user);
 		tempPost.addComment(comment);
 		blogPostRepository.save(tempPost);
 		return comment;
@@ -47,8 +47,7 @@ public class CommentService {
 
 	// update Comment
 
-	public Comment updateComment(String content, int commentId) {
-        Comment comment = (Comment)commentRepository.findCommentById(commentId);
+	public Comment updateComment(Comment comment, int commentId) {
         comment.setUpdated(LocalDate.now());
 		commentRepository.save(comment);
 		return comment;
