@@ -22,6 +22,12 @@ public class User {
 	@OneToMany(mappedBy="user")
 	List<Comment> comments= new ArrayList<>();
 	
+	public User(String name, String username, String password) {
+		this.name = name;
+		this.username = username;
+		this.password = password;
+	}
+
 	public boolean addPost(BlogPost post){
 		post.setUser(this);
 		return posts.add(post);

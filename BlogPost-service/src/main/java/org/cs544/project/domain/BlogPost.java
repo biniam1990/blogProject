@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -22,6 +23,7 @@ public class BlogPost {
 	@GeneratedValue
 	private int id;
 	private String title;
+	@Lob
 	private String content;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate created;
