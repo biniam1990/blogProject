@@ -1,6 +1,7 @@
 package org.cs544.project.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -37,8 +38,11 @@ public class BlogPostService {
 	//adds the post
 	public BlogPost addPost(BlogPost post, int userId){
 		System.out.println("Saving a post");
+		System.out.println(post);
         User user= (User)userRepository.findUserById(userId);
         post.setUser(user);
+        post.setCreated(new Date());
+        post.setUpdated(new Date());
 		postRepository.save(post);
 		return post;
 	}
@@ -46,7 +50,7 @@ public class BlogPostService {
 	//updates post
 	public BlogPost updatePost(BlogPost post, int postId){
 		System.out.println("updating A single post");
-		post.setUpdated(LocalDate.now());
+		post.setUpdated(new Date());
 		postRepository.save(post);
 		return post;
 	}

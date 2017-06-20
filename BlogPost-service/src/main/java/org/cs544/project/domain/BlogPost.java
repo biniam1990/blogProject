@@ -1,7 +1,9 @@
 package org.cs544.project.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,32 +14,37 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-public class BlogPost {
+public class BlogPost implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
 	private String title;
 	@Lob
 	private String content;
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	private LocalDate created;
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	private LocalDate updated;
+	@Temporal(TemporalType.DATE)
+	private Date created;
+	@Temporal(TemporalType.DATE)
+	private Date updated;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="post_id")
 	private List<Comment> comments= new ArrayList<>();
+
     @ManyToOne
 	private User user;
-
 	public BlogPost() {	}
 
-	public BlogPost(String title, String content) {
+	public BlogPost(String title,  String content) {
 		this.title = title;
 		this.content = content;
 	}
@@ -66,19 +73,19 @@ public class BlogPost {
 		this.content = content;
 	}
 
-	public LocalDate getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(LocalDate created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
-	public LocalDate getUpdated() {
+	public Date getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(LocalDate updated) {
+	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
 
@@ -105,5 +112,12 @@ public class BlogPost {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "BlogPost [id=" + id + ", title=" + title + ", content=" + content + ", created=" + created
+				+ ", updated=" + updated + ", comments=" + comments + ", user=" + user + "]";
+	}
+	
 
 }

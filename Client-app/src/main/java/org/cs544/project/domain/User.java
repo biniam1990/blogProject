@@ -1,18 +1,30 @@
 package org.cs544.project.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class User {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+public class User implements Serializable {
 
 	private int id;
 	private String name;
 	private String username;
 	private String password;
 	List<BlogPost> posts= new ArrayList<>();
+	@JsonIgnore
 	List<Comment> comments= new ArrayList<>();
 	
+	public User(){}
+	public User(String name, String username, String password) {
+		this.name = name;
+		this.username = username;
+		this.password = password;
+	}
+
 	public boolean addPost(BlogPost post){
 		post.setUser(this);
 		return posts.add(post);

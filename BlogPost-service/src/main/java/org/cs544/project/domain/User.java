@@ -1,5 +1,6 @@
 package org.cs544.project.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,16 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class User {
+public class User implements Serializable {
 	@Id 
 	@GeneratedValue
 	private int id;
 	private String name;
 	private String username;
 	private String password;
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	List<BlogPost> posts= new ArrayList<>();
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	List<Comment> comments= new ArrayList<>();
 	

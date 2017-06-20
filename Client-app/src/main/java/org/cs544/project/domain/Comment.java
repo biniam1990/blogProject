@@ -1,15 +1,18 @@
 package org.cs544.project.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class Comment {
+
+public class Comment implements Serializable {
 
 	private int id;
 	private String content;
-	private LocalDate created;
-	private LocalDate updated;
+	private Date created;
+	private Date updated;
 	private User user;
 	
 	public Comment() {}
@@ -44,19 +47,19 @@ public class Comment {
 		this.content = content;
 	}
 
-	public LocalDate getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(LocalDate created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
-	public LocalDate getUpdated() {
+	public Date getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(LocalDate updated) {
+	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
 	
