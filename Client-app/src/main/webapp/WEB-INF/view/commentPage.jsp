@@ -18,12 +18,13 @@
 <p>${post.content}</p>
 
 <c:forEach var="comment" items ="${comments}">
-<tr>
-<td>$<textarea cols='30' rows='8'>
-			${comment.content}
-			</textarea></td>
-</tr>
+<p>${comment.content}</p>
 </c:forEach>
+<form action="../1/posts/${post.id}/comments" method="post">
+<p><textarea rows="10" cols="15" name="content"></textarea></p>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+<input type="submit" value="comment">
+</form>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   

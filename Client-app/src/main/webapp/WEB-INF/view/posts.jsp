@@ -17,10 +17,9 @@
            </sec:authorize>
 
 <c:forEach var="post" items ="${posts}">
-<tr>
-<td>${post.title}</td>
-</tr>
-<tr><td>${post.content}</td></tr>
+
+<h2>${post.title}</h2>
+<p>${post.content}<a href="posts/${post.id}"><button class="btn btn-primary">comments</button></a></p>
 </c:forEach>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

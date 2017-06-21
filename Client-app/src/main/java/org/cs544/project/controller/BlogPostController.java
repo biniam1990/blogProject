@@ -60,9 +60,23 @@ public class BlogPostController {
 		return "redirect:/posts";
 	}
    
+   @PostMapping(value = "{userId}/posts/{postId}/comments")
+   public String addComment(String content,@PathVariable int postId, @PathVariable int userId) {
+	   System.out.println("commenting on a post");
+	   Comment comment =new Comment(content);
+	   System.out.println(comment.getContent());
+	   restTemplate.postForLocation("http://localhost:8080/"+userId+"/posts/"+postId+"/comments", comment);
+	   return "redirect:/posts";
+   }
+   
    @GetMapping("/postForm")
-   public String postForm(){
+   public String postForm(){   
 	   return "postForm";
    }
+   @GetMapping("/commentPage")
+   public String commentPage(){
+	   return "commentPage";
+   }
+   
 
 }

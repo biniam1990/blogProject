@@ -13,6 +13,7 @@
 	 <form action="1/posts" method="post">
 		Title<input type="text" name="title"/></br>
 		 Content<input type="text"  name="content" /> 
+		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		 <input type="submit" value="Post">
 	</form> 
 </body>
