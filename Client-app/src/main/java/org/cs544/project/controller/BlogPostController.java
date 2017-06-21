@@ -35,6 +35,9 @@ public class BlogPostController {
 		ResponseEntity<BlogPost[]> posts= restTemplate.getForEntity(serviceUrl+"posts", 
 				BlogPost[].class);	
 		System.out.println(posts.getBody());
+		  for(BlogPost post: posts.getBody()){
+			System.out.println( "posted by: "+ post.getUser().getName());
+		  }
 	   model.addAttribute("posts",posts.getBody());
 		return "posts";
 	}
@@ -83,5 +86,9 @@ public class BlogPostController {
 	   return "registration";
    }
    
+   @GetMapping("/editPost")
+   public String editPost(){
+	   return "postEdit";
+   }
 
 }
