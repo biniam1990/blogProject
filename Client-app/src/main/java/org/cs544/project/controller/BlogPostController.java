@@ -78,5 +78,10 @@ public class BlogPostController {
 	   return "commentPage";
    }
    
+   @GetMapping("/registration")
+   public String registrationPage(){
+	   return "registration";
+   }
+   
 
 }

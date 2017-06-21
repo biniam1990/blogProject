@@ -33,6 +33,7 @@ public class CommentController {
 	}
 	@PostMapping(value = "{userId}/posts/{postId}/comments")
 	public Comment addComment(@RequestBody Comment comment, @PathVariable int postId, @PathVariable int userId) {
+		
 		return	commentService.addComment(comment, postId, userId);
 	}
 	

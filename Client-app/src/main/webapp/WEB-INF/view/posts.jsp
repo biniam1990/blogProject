@@ -12,6 +12,7 @@
 <body>
 <h1>this is posts page</h1>
 <div class="container">
+<a href="registration">register</a>
   <sec:authorize access="hasRole('ROLE_USER')">
           <a href="postForm"><button class="btn btn-primary">New Post</button></a>
            </sec:authorize>

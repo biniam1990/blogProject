@@ -12,13 +12,13 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	User findUserById(int id){
+	public User findUserById(int id){
 		return userRepository.findUserById(id);
 	}
-	User findUserByUsernameAndPassword(String username, String password){
+	public User findUserByUsernameAndPassword(String username, String password){
 		return userRepository.findUserByUsernameAndPassword(username, password);
 	}
-	User findUserByUsername(String username){
+	public User findUserByUsername(String username){
 		return userRepository.findUserByUsername(username);
 	}
 	public void saveUser(User user) {

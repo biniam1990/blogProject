@@ -35,7 +35,7 @@
                 <div class="panel-body">
                     <h5 class="text-center">
                         SIGN UP</h5>
-                    <form class="form form-signup" role="form" method="POST" action="${contextPath}/login" >
+                    <form class="form form-signup" role="form" method="POST" action="/login" >
                     <div class="form-group">
                         <span>${message}</span>
                      
