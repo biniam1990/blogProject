@@ -11,8 +11,11 @@
 </head>
 <body>
 <h1>this is posts page</h1>
+<p>${message}</p>
 <div class="container">
 <a href="registration">register</a>
+<a href="loginn">login</a>
+<a href="logout">logout</a>
   <sec:authorize access="hasRole('ROLE_USER')">
           <a href="postForm"><button class="btn btn-primary">New Post</button></a>
            </sec:authorize>
@@ -20,9 +23,10 @@
 <c:forEach var="post" items ="${posts}">
 
 <h2>${post.title}</h2>
-<p>${post.content}<a href="posts/${post.id}"><button class="btn btn-primary">comments</button></a></p>
+<p>${post.content}<a href="posts/${post.id}"><button class="btn btn-xs btn-primary">comments</button></a></p>
 </c:forEach>
 </div>
+ <p>${user.name}</p> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

@@ -14,13 +14,14 @@
 <div class="container">
 
 <h1>Single Post</h1>
+<p>${user.name}</p>
 <p>${post.title}</p>
 <p>${post.content}</p>
 
 <c:forEach var="comment" items ="${comments}">
 <p>${comment.content}</p>
 </c:forEach>
-<form action="../1/posts/${post.id}/comments" method="post">
+<form action="../${user.id}/posts/${post.id}/comments" method="post">
 <p><textarea rows="10" cols="15" name="content"></textarea></p>
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <input type="submit" value="comment">

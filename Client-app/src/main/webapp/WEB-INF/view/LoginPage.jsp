@@ -7,9 +7,10 @@
 <title>Login here</title>
 </head>
 <body>
-	<form action="http login" method="post">
-		USerName:<input type="text" name="username" /><br />
+	<form action="/loginn" method="post">
+		       USerName:<input type="text" name="username" /><br />
 		<br /> Password:<input type="password" name="password" /><br />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<br /> <input type="submit" value="login" />"
 	</form>
 </body>

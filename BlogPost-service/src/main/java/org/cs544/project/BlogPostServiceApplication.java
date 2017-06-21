@@ -11,4 +11,4 @@ public class BlogPostServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BlogPostServiceApplication.class, args);
 	}
-}
+} 

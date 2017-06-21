@@ -22,7 +22,7 @@ public class UserService {
 		return userRepository.findUserByUsername(username);
 	}
 	public void saveUser(User user) {
-
+		// user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 	}
 }

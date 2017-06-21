@@ -5,6 +5,7 @@ import org.cs544.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,14 +22,21 @@ public class UserController {
 	  
 	 @RequestMapping(value = "/registration", method = RequestMethod.POST)
 	    public User registration(@RequestBody User user) {
-
 	        userService.saveUser(user);
 	        return user;
 	    }
 	 
-	 @PostMapping("/login")
+	 @GetMapping("/login")
 	 public User checkLogin( @RequestParam String username, @RequestParam String password){
-		return userService.findUserByUsernameAndPassword(username,password);
-		 
+		 System.out.println("checking login on the service");
+	User user =(User)userService.findUserByUsernameAndPassword(username,password);
+		// System.out.println(user.getName());
+		 return user;
+	 }
+	 
+	 @GetMapping("/loadUser")
+	 public User loadUser(@RequestParam String username){
+		 User user =  userService.findUserByUsername(username);
+		 return user;
 	 }
 }
