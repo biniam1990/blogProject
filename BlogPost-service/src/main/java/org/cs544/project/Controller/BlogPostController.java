@@ -32,7 +32,7 @@ public class BlogPostController {
 	public List<BlogPost>getAllPosts(){	
 	return postService.getPosts();
 	}
-	@PostMapping(value="{userId}/posts")
+	@PostMapping(value="{userId}/posts",consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
 	public BlogPost addPost(@RequestBody BlogPost post, @PathVariable int userId){
 		System.out.println(post);
 		return postService.addPost(post,userId);

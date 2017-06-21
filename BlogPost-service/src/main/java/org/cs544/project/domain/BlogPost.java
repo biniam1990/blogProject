@@ -26,12 +26,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class BlogPost implements Serializable {
-	@Id
+	@Id 
 	@GeneratedValue
 	private int id;
 	private String title;
 	@Lob
-	private String content;
+	private String content; 
 	@Temporal(TemporalType.DATE)
 	private Date created;
 	@Temporal(TemporalType.DATE)
