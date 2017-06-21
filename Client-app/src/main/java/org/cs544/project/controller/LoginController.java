@@ -23,10 +23,10 @@ public class LoginController {
 		model.setViewName("registration");
 		return model;
 	}
-	@RequestMapping(value={"/", "/posts"}, method = RequestMethod.GET)
-	public ModelAndView posts(){
-		ModelAndView model = new ModelAndView();
-		model.setViewName("posts");
-		return model;
-	}
+//	@RequestMapping(value={"/", "/posts"}, method = RequestMethod.GET)
+//	public ModelAndView posts(){
+//		ModelAndView model = new ModelAndView();
+//		model.setViewName("posts");
+//		return model;
+//	}
 }
