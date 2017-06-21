@@ -1,7 +1,9 @@
 package org.cs544.project.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,14 +15,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Comment {
+public class Comment implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
 	@Lob
 	private String content;
-	private LocalDate created;
-	private LocalDate updated;
+	@Temporal(TemporalType.DATE)
+	private Date created;
+	@Temporal(TemporalType.DATE)
+	private Date updated;
 	@ManyToOne
 	private User user;
 	
@@ -56,19 +60,19 @@ public class Comment {
 		this.content = content;
 	}
 
-	public LocalDate getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(LocalDate created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
-	public LocalDate getUpdated() {
+	public Date getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(LocalDate updated) {
+	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
 	

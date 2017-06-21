@@ -1,6 +1,7 @@
 package org.cs544.project.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,8 +27,8 @@ public class CommentService {
 	private UserRepository userRepository;
 
 	// gets all commments
-	public List<Comment> getComments() {
-		return commentRepository.findAll();
+	public List<Comment> getComments(int postId) {
+		return commentRepository.findCommentById(postId);
 	}
 
 	// get comment by id
@@ -39,6 +40,8 @@ public class CommentService {
 	public Comment addComment(Comment comment, int postId, int userId) {
 		BlogPost tempPost = blogPostRepository.findBlogPostById(postId);
 		User user = userRepository.findUserById(userId);
+		comment.setCreated(new Date());
+		comment.setUpdated(new Date());
 		comment.setUser(user);
 		tempPost.addComment(comment);
 		blogPostRepository.save(tempPost);
@@ -48,7 +51,7 @@ public class CommentService {
 	// update Comment
 
 	public Comment updateComment(Comment comment, int commentId) {
-        comment.setUpdated(LocalDate.now());
+        comment.setUpdated(new Date());
 		commentRepository.save(comment);
 		return comment;
 	}

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.cs544.project.domain.BlogPost;
+import org.cs544.project.domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.ResponseEntity;
@@ -31,22 +32,28 @@ public class BlogPostController {
 	@GetMapping("/posts")
 	public String displayPosts(Model model){
 		ResponseEntity<BlogPost[]> posts= restTemplate.getForEntity(serviceUrl+"posts", 
-				BlogPost[].class);
-	   model.addAttribute("posts",posts);
+				BlogPost[].class);	
+		System.out.println(posts.getBody());
+	   model.addAttribute("posts",posts.getBody());
 		return "posts";
 	}
 	
 	@GetMapping("/posts/{postId}")
 	public String displayPost (Model model, @PathVariable int postId){
-		BlogPost post = restTemplate.getForObject(serviceUrl+postId, BlogPost.class);
-		model.addAttribute("post", post);
+		//BlogPost post1= restTemplate.getForObject(serviceUrl+"posts"+postId, BlogPost.class);
+		ResponseEntity<BlogPost> post = restTemplate.getForEntity(serviceUrl+postId, BlogPost.class);
+//		ResponseEntity<Comment[]> comments= restTemplate.getForEntity(serviceUrl+"posts/"+postId, 
+//				Comment[].class);
+		System.out.println(post.getBody());
+		model.addAttribute("post",post.getBody());
+		//model.addAttribute("comments",comments.getBody());
 		return "commentPage";
 	}
 
    @PostMapping(value="{userId}/posts")
-	public String addPost(@RequestBody BlogPost post, @PathVariable int userId){
+	public String addPost(String title, String content, @PathVariable int userId){
 	   System.out.println(userId);
-	 //  restTemplate.postForLocation(url, request, uriVariables)
+	   BlogPost post= new BlogPost("test-title", "test-content");
 		restTemplate.postForLocation("http://localhost:8080/"+userId+"/posts", post);
 		return "redirect:/posts";
 	}
