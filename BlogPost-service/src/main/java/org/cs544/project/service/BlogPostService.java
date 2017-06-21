@@ -38,11 +38,12 @@ public class BlogPostService {
 	//adds the post
 	public BlogPost addPost(BlogPost post, int userId){
 		System.out.println("Saving a post");
-		System.out.println(post);
+		
         User user= (User)userRepository.findUserById(userId);
         post.setUser(user);
         post.setCreated(new Date());
         post.setUpdated(new Date());
+        System.out.println(post);
 		postRepository.save(post);
 		return post;
 	}

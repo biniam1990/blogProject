@@ -14,6 +14,7 @@ public class User implements Serializable {
 	private String name;
 	private String username;
 	private String password;
+	@JsonIgnore
 	List<BlogPost> posts= new ArrayList<>();
 	@JsonIgnore
 	List<Comment> comments= new ArrayList<>();

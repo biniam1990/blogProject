@@ -4,40 +4,59 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.cs544.project</groupId>
+<<<<<<< HEAD
+	<artifactId>BlogPost-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>BlogPost-service</name>
+	<description>REST API service for blogging application</description>
+=======
 	<artifactId>Client-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Client-app</name>
 	<description>SpringMVC client for blogging application</description>
- 
+>>>>>>> ac2da74e7632de9dede7a5a8bf46ccd30afeb319
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.4.RELEASE</version>
- 
- 
+<<<<<<< HEAD
+		<relativePath/> <!-- lookup parent from repository -->
+=======
 		<relativePath /> <!-- lookup parent from repository -->
- 
+>>>>>>> ac2da74e7632de9dede7a5a8bf46ccd30afeb319
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
- 
+<<<<<<< HEAD
+	<start-class>org.cs544.project.BlogPostServiceApplication</start-class>
 	</properties>
 
- 
+	
+=======
+	</properties>
+
+>>>>>>> ac2da74e7632de9dede7a5a8bf46ccd30afeb319
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 		<dependency>
- 
- 
+<<<<<<< HEAD
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+		<dependency>
+=======
+>>>>>>> ac2da74e7632de9dede7a5a8bf46ccd30afeb319
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
@@ -45,13 +64,31 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
- 
+<<<<<<< HEAD
+        <dependency>
+          <groupId>com.fasterxml.jackson.datatype</groupId>
+           <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+=======
+
+>>>>>>> ac2da74e7632de9dede7a5a8bf46ccd30afeb319
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
- 
+<<<<<<< HEAD
+		<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <version>1.3.0.RELEASE</version>
+</dependency>
+=======
 
 		<!-- JSTL for JSP -->
 		<dependency>
@@ -88,7 +125,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
- 
+>>>>>>> ac2da74e7632de9dede7a5a8bf46ccd30afeb319
 	</dependencies>
 
 	<build>
