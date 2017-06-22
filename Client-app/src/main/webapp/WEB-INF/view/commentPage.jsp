@@ -40,13 +40,14 @@
 
 <div class="container">
 
-<h1>Single Post</h1>
-<p>${user.name}</p>
-<p>${post.title}</p>
 <p>${post.content}</p>
+<p>Posted By:${post.user.name} &nbsp; Post Date: ${post.created}</p>
 
+<h3>The Comments: </h3>
 <c:forEach var="comment" items ="${comments}">
 <p>${comment.content}</p>
+<p>commented By:${comment.user.name} &nbsp; Comment Date: ${comment.created}</p>
+
 </c:forEach>
 <form action="${contextPath}/${user.id}/posts/${post.id}/comments" method="post">
 <p><textarea rows="5" cols="10" name="content"></textarea></p>

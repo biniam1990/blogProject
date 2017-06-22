@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.cs544.project.domain.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,10 +63,13 @@ public class LoginController {
 		
 	}
 	
-	@GetMapping("/loginn")
-	public String loginPage(){
-		
-		return "LoginPage";
+	@GetMapping("/login")
+	public String loginPage(Model model, String error, String logout){
+		  if (error != null)
+	            model.addAttribute("error", "Your username and password is invalid.");
+		  if (logout != null)
+	            model.addAttribute("message", "You have been logged out successfully.");
+		return "login";
 		
 	}
 	@GetMapping("/error")
@@ -76,7 +80,7 @@ public class LoginController {
 	@GetMapping("/logout")
 	public String logoutPage(HttpServletRequest request){
 		request.getSession().invalidate();
-		return "redirect:/login";
+		return "redirect:/posts";
 	}
 //	@RequestMapping(value={"/", "/posts"}, method = RequestMethod.GET)
 //	public ModelAndView posts(){

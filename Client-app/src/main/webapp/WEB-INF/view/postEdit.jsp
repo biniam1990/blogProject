@@ -29,14 +29,15 @@
         <li><a href="${contextPath}/aboutUs">About Us</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-       
+        
         <li><a href="${contextPath}/login" >Login</a></li>
-        <li><a href="${contextPath}/logout" >Logout</a></li>
+        <li><a href="${contextPath}/logout"  >Logout</a></li>
       </ul>
     </div>
 </nav>
 <div class="container">
 	<h1>Here are your recent posts</h1>
+	<p><a href="${contextPath}/postForm"><button class="btn btn-xs btn-primary">Post Something</button></a></p>
     <c:forEach var="post" items ="${userPosts}">
     <h2>${post.title}</h2>
    <p> Post Date: ${post.created}</p>

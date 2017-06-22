@@ -30,9 +30,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-                //.loginPage("/login")
+                .loginPage("/login")
+                .usernameParameter("j_username")
+                .passwordParameter("j_password")
                 .defaultSuccessUrl("/posts")
-                .loginProcessingUrl("/login")
+                .loginProcessingUrl("/j_spring_security_check")
+                .failureUrl("/login?error")
                 .permitAll()
                 .and()
                 .logout()
@@ -42,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-      auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+      //auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+    auth.userDetailsService(userDetailsService);
     }
 }

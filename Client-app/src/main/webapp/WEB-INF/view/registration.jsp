@@ -37,9 +37,11 @@
     <!--/.nav-collapse -->
   </div>
 </nav>
-<form action="registration" method="post">  
+<div class="container">
 <div class="row">
-<div class="col-sm-6">
+<div class="col-md-6 col-md-offset-4">
+<form action="${contextPath}/registration" method="post" class="form-horizontal">  
+
  <div class="form-group">
     <label for="name"> Name</label>
     <input type="text" class="form-control" id="name" name ="name" placeholder="name" >
@@ -60,28 +62,11 @@
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
    <button type="submit" class="btn btn-primary">Register</button>
+   </form>
       </div>
       </div>
- 
- <%-- <%
-String password1 = request.getParameter("upass");
-String password2 = request.getParameter("upass2");
-//Is the page submitted?
-if (password1!=null && password2!=null) {
-    
-   // Are the passwords equal?
-   if (!password1.equals(password2)) {
-%>
-     <%@ include file="ErrorPasswordNotTheSame" %>
-<%
-   }
-   else  %>
-   <%@ include file="posts" %>
-   <%
-   
-}
-%> --%>
-</form>
+       </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

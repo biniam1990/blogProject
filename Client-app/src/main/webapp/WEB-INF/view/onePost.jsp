@@ -29,7 +29,6 @@
         <li><a href="${contextPath}/aboutUs">About Us</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-       
         <li><a href="${contextPath}/login" >Login</a></li>
         <li><a href="${contextPath}/logout" >Logout</a></li>
       </ul>

@@ -30,12 +30,16 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user =restTemplate.getForObject(serviceUrl+"loadUser?username="+username, User.class);
+		if(user==null){
+			throw new UsernameNotFoundException(username +" is not found");
+		}
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-         session.setAttribute("user", user);
+        session.setAttribute("user", user);
+        
          ResponseEntity<BlogPost[]> userPosts = restTemplate.getForEntity(serviceUrl+"editPost?userId="+user.getId(), BlogPost[].class);
          session.setAttribute("userPosts",userPosts.getBody());
             grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
-     
 		 return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
-	}
+        
+        }
 }

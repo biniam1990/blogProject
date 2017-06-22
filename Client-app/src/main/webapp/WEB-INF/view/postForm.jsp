@@ -39,7 +39,8 @@
 </nav>
 <div class="container">
 	<h1>post form</h1>
-
+  <div  class="row">
+  <div class="col-sm-6">
 	 <form action="${user.id}/posts" method="post">
 		     <div class="form-group">
     <label for="title"> Title</label>
@@ -54,6 +55,8 @@
 		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		 <input type="submit" value="Post">
 	</form> 
+	</div>
+	</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   

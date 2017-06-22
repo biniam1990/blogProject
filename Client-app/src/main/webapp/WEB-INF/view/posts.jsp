@@ -30,9 +30,9 @@
         <li><a href="${contextPath}/aboutUs">About Us</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-       
+        <li><a href="${contextPath}/registration">Register</a></li>
         <li><a href="${contextPath}/login" >Login</a></li>
-        <li><a href="${contextPath}/logout" >Logout</a></li>
+        <li><a href="${contextPath}/logout">Logout</a></li>
       </ul>
     </div>
     <!--/.nav-collapse -->
@@ -46,7 +46,7 @@
 
 <c:forEach var="post" items ="${posts}">
 
-<h2>${post.title}</h2>
+<h4>${post.title}</h4>
 <p>Posted By:${post.user.name} &nbsp; Post Date: ${post.created}</p>
 
 <p>${post.content}</p>
