@@ -27,7 +27,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
 		User user =restTemplate.getForObject(serviceUrl+"loadUser?username="+username, User.class);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
          session.setAttribute("user", user);

@@ -14,7 +14,7 @@
 <p>${message}</p>
 <div class="container">
 <a href="registration">register</a>
-<a href="loginn">login</a>
+<a href="login">login</a>
 <a href="logout">logout</a>
 <a href="editPost">editPost</a>
   <sec:authorize access="hasRole('ROLE_USER')">
