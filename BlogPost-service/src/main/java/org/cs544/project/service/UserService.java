@@ -5,9 +5,12 @@ import org.cs544.project.Repository.UserRepository;
 import org.cs544.project.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;

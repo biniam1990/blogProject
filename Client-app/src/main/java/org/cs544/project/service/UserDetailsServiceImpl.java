@@ -1,7 +1,9 @@
  package org.cs544.project.service;
 
+import org.cs544.project.domain.BlogPost;
 import org.cs544.project.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,6 +33,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		User user =restTemplate.getForObject(serviceUrl+"loadUser?username="+username, User.class);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
          session.setAttribute("user", user);
+         ResponseEntity<BlogPost[]> userPosts = restTemplate.getForEntity(serviceUrl+"editPost?userId="+user.getId(), BlogPost[].class);
+         session.setAttribute("userPosts",userPosts.getBody());
             grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
      
 		 return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
