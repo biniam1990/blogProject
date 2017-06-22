@@ -17,10 +17,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	 
-//	@Bean
-//	    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-//	        return new BCryptPasswordEncoder();
-//	    }
+	@Bean
+	    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+	        return new BCryptPasswordEncoder();
+	    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -39,15 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//            .inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER");
-//    }
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+      auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 }
