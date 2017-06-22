@@ -10,11 +10,8 @@ import org.cs544.project.service.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
-=======
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
->>>>>>> a9010185193ed41832c2cd0408c7c427dc1d1609
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -66,6 +63,7 @@ public class LoginController {
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult result, Model model) {
         userValidator.validate(userForm, result);
         if (result.hasErrors()) {
+        	model.addAttribute("message", "Invalid username/password");
            return "registration";
         }
         restTemplate.postForLocation(serviceUrl+"registration", userForm);

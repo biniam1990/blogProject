@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
 <title>Registration page </title>
@@ -40,6 +41,8 @@
 <div class="container">
 <div class="row">
 <div class="col-md-6 col-md-offset-4">
+<p  style="color:red">${message}</p>
+<form:errors path="username"/>
 <form action="${contextPath}/registration" method="post" class="form-horizontal">  
 
  <div class="form-group">
