@@ -5,20 +5,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.cs544.project.domain.User;
+import org.cs544.project.service.SecurityService;
+import org.cs544.project.service.UserValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 public class LoginController {
 	 private String serviceUrl= "http://localhost:8080/";
 		@Resource
 		private RestTemplate restTemplate;
+		@Autowired
+	    private UserValidator userValidator;
+		@InitBinder
+	    private void initBinder(WebDataBinder binder) {
+	        binder.setValidator(userValidator);
+	    }
+		@Autowired
+	    private SecurityService securityService;
 		
 //	@RequestMapping(value= "/login", method = RequestMethod.GET)
 //	public ModelAndView login(){
@@ -35,14 +51,25 @@ public class LoginController {
 //		return model;
 //	}
 	
-	@PostMapping("/registration")
-	public String addUser(String name, String username, String password){
-		User user = new User(name, username, password);
-		System.out.println(user.getName());
-		restTemplate.postForLocation(serviceUrl+"registration", user);
-		
-		return "redirect:/posts";
-	}
+//	@PostMapping("/registration")
+//	public String addUser(String name, String username, String password){
+//		User user = new User(name, username, password);
+//		System.out.println(user.getName());
+//		restTemplate.postForLocation(serviceUrl+"registration", user);
+//		
+//		return "redirect:/posts";
+	
+	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult result, Model model) {
+        userValidator.validate(userForm, result);
+        if (result.hasErrors()) {
+           return "registration";
+        }
+        restTemplate.postForLocation(serviceUrl+"registration", userForm);
+       // securityService.autologin(userForm.getUsername(), userForm.getPassword());
+        return "redirect:/posts";
+    
+}
 	
 	@PostMapping("/loginn")
 	public String checkUser(String username,String password, HttpServletRequest request,RedirectAttributes attr){
