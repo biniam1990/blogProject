@@ -13,8 +13,11 @@ import org.cs544.project.domain.BlogPost;
 import org.cs544.project.domain.Comment;
 import org.cs544.project.domain.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class CommentService {
 
 	@Resource

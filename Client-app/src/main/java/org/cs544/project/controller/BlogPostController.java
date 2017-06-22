@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 
 import org.cs544.project.domain.BlogPost;
 import org.cs544.project.domain.Comment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.ResponseEntity;
@@ -19,25 +21,33 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class BlogPostController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BlogPostController.class);
+	
      private String serviceUrl= "http://localhost:8080/";
 	@Resource
 	private RestTemplate restTemplate;
+	
+	@GetMapping("/")
+	public String homePage(){
+		
+		return "redirect:/posts";
+	}
 	
 	@GetMapping("/posts")
 	public String displayPosts(Model model){
 		ResponseEntity<BlogPost[]> posts= restTemplate.getForEntity(serviceUrl+"posts", 
 				BlogPost[].class);	
-		System.out.println(posts.getBody());
-		  for(BlogPost post: posts.getBody()){
-			System.out.println( "posted by: "+ post.getUser().getName());
-		  }
+		logger.info("HTTP status: "+posts.getStatusCode().toString());
 	   model.addAttribute("posts",posts.getBody());
 		return "posts";
 	}
@@ -63,12 +73,36 @@ public class BlogPostController {
 		return "redirect:/posts";
 	}
    
+   //update the post 
+   @PostMapping(value="{userId}/posts/{postId}")
+   public String updatePost(String title, String content, @PathVariable int userId,@PathVariable int postId){
+	   BlogPost post= new BlogPost(title, content);
+	   System.out.println("making an update request");
+	   System.out.println(post.getContent());
+	   restTemplate.put(serviceUrl+userId+"/posts/"+postId, post);
+	   return "redirect:/posts"; 
+   }
+   
    @PostMapping(value = "{userId}/posts/{postId}/comments")
    public String addComment(String content,@PathVariable int postId, @PathVariable int userId) {
 	   System.out.println("commenting on a post");
 	   Comment comment =new Comment(content);
 	   System.out.println(comment.getContent());
 	   restTemplate.postForLocation("http://localhost:8080/"+userId+"/posts/"+postId+"/comments", comment);
+	   return "redirect:/posts";
+   }
+   
+   @GetMapping("/posts/{postId}/onePost") 
+   public String editSinglePost(Model model,@PathVariable int postId){
+	   ResponseEntity<BlogPost> post = restTemplate.getForEntity(serviceUrl+"posts/"+postId, BlogPost.class);
+	   model.addAttribute("onePost", post.getBody());
+	   return "onePost";
+   }
+   
+   @PostMapping("/delete")
+   public String deletePost(@RequestParam int postId, @RequestParam int userId){
+	   logger.warn("deleting post with postId= "+postId );
+	   restTemplate.delete(serviceUrl+userId+"/posts/"+postId);
 	   return "redirect:/posts";
    }
    
@@ -89,6 +123,11 @@ public class BlogPostController {
    @GetMapping("/editPost")
    public String editPost(){
 	   return "postEdit";
+   }
+   
+   @GetMapping("/aboutUs")
+   public String aboutUs(){
+	   return "aboutUs";
    }
 
 }

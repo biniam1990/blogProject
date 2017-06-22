@@ -50,16 +50,19 @@ public class BlogPostService {
 	
 	//updates post
 	public BlogPost updatePost(BlogPost post, int postId){
-		System.out.println("updating A single post");
-		post.setUpdated(new Date());
-		postRepository.save(post);
-		return post;
+		postRepository.setBlogPostInfoById(post.getTitle(), post.getContent(), postId);
+		BlogPost post2 =(BlogPost) postRepository.findBlogPostById(postId);
+		return post2;
 	}
 	
 	//deletes post
 	public void deletePost(int id){
 		System.out.println("deleting a post");
 		postRepository.delete(id);
+	}
+	
+	public List<BlogPost> getPostByUserId(int userId){
+	  return postRepository.findBlogPostByUserId(userId);
 	}
 	
 }
